@@ -85,12 +85,12 @@ export const PropertyFilters = ({ onFiltersChange }: PropertyFiltersProps) => {
           </div>
 
           {/* Estado e Tipo */}
-          <Select value={filters.estado || ""} onValueChange={(value) => handleFilterChange("estado", value || undefined)}>
+          <Select value={filters.estado || "all"} onValueChange={(value) => handleFilterChange("estado", value === "all" ? undefined : value)}>
             <SelectTrigger>
               <SelectValue placeholder="Estado" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todos os estados</SelectItem>
+              <SelectItem value="all">Todos os estados</SelectItem>
               {ESTADOS_BR.map((estado) => (
                 <SelectItem key={estado} value={estado}>
                   {estado}
@@ -101,12 +101,12 @@ export const PropertyFilters = ({ onFiltersChange }: PropertyFiltersProps) => {
 
           {/* Quartos e Tipo */}
           <div className="flex gap-2">
-            <Select value={filters.quartos?.toString() || ""} onValueChange={(value) => handleFilterChange("quartos", value ? Number(value) : undefined)}>
+            <Select value={filters.quartos?.toString() || "all"} onValueChange={(value) => handleFilterChange("quartos", value === "all" ? undefined : Number(value))}>
               <SelectTrigger>
                 <SelectValue placeholder="Quartos" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Todos</SelectItem>
+                <SelectItem value="all">Todos</SelectItem>
                 {[1, 2, 3, 4, 5].map((num) => (
                   <SelectItem key={num} value={num.toString()}>
                     {num}+ quartos
@@ -115,12 +115,12 @@ export const PropertyFilters = ({ onFiltersChange }: PropertyFiltersProps) => {
               </SelectContent>
             </Select>
 
-            <Select value={filters.tipo || ""} onValueChange={(value) => handleFilterChange("tipo", value as any)}>
+            <Select value={filters.tipo || "all"} onValueChange={(value) => handleFilterChange("tipo", value === "all" ? undefined : value as any)}>
               <SelectTrigger>
                 <SelectValue placeholder="Tipo" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Todos</SelectItem>
+                <SelectItem value="all">Todos</SelectItem>
                 <SelectItem value="Apartamento">Apartamento</SelectItem>
                 <SelectItem value="Casa">Casa</SelectItem>
               </SelectContent>
